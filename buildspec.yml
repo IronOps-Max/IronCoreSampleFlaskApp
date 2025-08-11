@@ -1,29 +1,20 @@
 version: 0.2
 
-phases:
-  install:
-    runtime-versions:
-      python: 3.9
-    commands:
-      - echo "Installing dependencies..."
-      - pip install -r requirements.txt
-      - pip install pytest
-  build:
-    commands:
-      - ls -l
-      - export PYTHONPATH=$(pwd)
-      - echo $PYTHONPATH
-      - echo "Running pytest..."
-      - pytest --maxfail=1 --disable-warnings -v
-  post_build:
-    commands:
-      - echo "Tests passed - preparing artifact..."
-      - mkdir -p deploy
-      - find . -path './.gitignore' -prune -o -type f -exec cp --parents {} deploy/ \;
-
-
-artifacts:
-  files:
-    - '**/*'
-  base-directory: deploy
-  discard-paths: no
+phases: 
+    install:
+        runtime-versions:
+            nodejs: latest
+        commands:
+            - echo "installing something"
+    pre_build:
+        commands: 
+            - echo "we are in the pre build phase"
+    build:
+        commands:
+            - echo "we are in the build block"
+            - echo "we will run some tests"
+            - grep -Fq "Congratulations" index.html
+    post_build:
+        commands:
+            - echo "we are in the post build phase"
+            
