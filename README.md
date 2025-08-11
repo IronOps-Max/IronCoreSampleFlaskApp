@@ -1,4 +1,4 @@
-# Flask Hello World — AWS CI/CD example (GitHub → CodePipeline → CodeBuild → CodeDeploy → EC2)
+### Flask Hello World — AWS CI/CD example (GitHub → CodePipeline → CodeBuild → CodeDeploy → EC2)
 
 ## What is included
 - Flask app (`app.py`)
