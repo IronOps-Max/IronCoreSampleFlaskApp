@@ -16,10 +16,10 @@ phases:
       - echo "Running pytest..."
       - pytest --maxfail=1 --disable-warnings -v
   post_build:
-  commands:
-    - echo "Tests passed - preparing artifact..."
-    - mkdir -p deploy
-    - cp -r * deploy/
+    commands:
+      - echo "Tests passed - preparing artifact..."
+      - mkdir -p deploy
+      - cp -r * deploy/
 artifacts:
   files:
     - '**/*'
