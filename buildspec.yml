@@ -17,9 +17,11 @@ phases:
       - pytest --maxfail=1 --disable-warnings -v
   post_build:
     commands:
-      - echo "Tests passed - preparing artifact..."
+      - echo "Preparing artifact..."
       - mkdir -p deploy
-      - cp -r * deploy/
+      - cp app.py deploy/
+      - cp requirements.txt deploy/
+
 artifacts:
   files:
     - '**/*'
