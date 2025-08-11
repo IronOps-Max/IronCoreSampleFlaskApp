@@ -1,18 +1,22 @@
 version: 0.0
 os: linux
 files:
-  - source: /index.html
-    destination: /var/www/html/
+  - source: /
+    destination: /home/ubuntu/nodejs-hello
+permissions:
+  - object: /home/ubuntu/nodejs-hello/scripts
+    pattern: "**"
+    mode: 755
 hooks:
-  BeforeInstall:
-    - location: scripts/install_dependencies
-      timeout: 300
-      runas: root
-    - location: scripts/start_server
-      timeout: 300
-      runas: root
   ApplicationStop:
-    - location: scripts/stop_server
-      timeout: 300
-      runas: root
-
+    - location: scripts/stop_server.sh
+      timeout: 10
+  AfterInstall:
+    - location: scripts/install_dependencies.sh
+      timeout: 180
+  ApplicationStart:
+    - location: scripts/start_server.sh
+      timeout: 30
+  ValidateService:
+    - location: scripts/validate.sh
+      timeout: 10
