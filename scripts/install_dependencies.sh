@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-cd /home/ec2-user/flask-app
+cd /home/ubuntu/flask-app
 # ensure pip3 is available
 if ! command -v pip3 >/dev/null 2>&1; then
   echo "pip3 not found, please ensure Python3 & pip3 are installed"
