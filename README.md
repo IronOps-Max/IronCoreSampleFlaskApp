@@ -13,3 +13,14 @@
    python3 -m venv venv
    source venv/bin/activate
    pip install -r requirements.txt
+
+   ## cicd 
+
+   gitub : dev - stg - prod 
+
+   aws : dev -stg - prod         (stack used : ec2-s3) + codeDepply
+
+   now i send pr to dev  :
+   trigger codePipeline in dev environment : build test send artifact to s3 then trigger pr to stg , stg will also build test and deploy to stg env , same for prod 
+
+   ##
