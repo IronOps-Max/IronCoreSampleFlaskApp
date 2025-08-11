@@ -1,0 +1,46 @@
+{
+  "Version": "2012-10-17",
+  "Id": "key-policy",
+  "Statement": [
+    {
+      "Sid": "Allow account admins",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::272495906318:root"
+      },
+      "Action": "kms:*",
+      "Resource": "*"
+    },
+    {
+      "Sid": "Allow Dev pipeline and build roles to use the key",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": [
+          "arn:aws:iam::272495906318:role/Dev-CodePipeline-Service-Role",
+          "arn:aws:iam::272495906318:role/Dev-CodeBuild-Service-Role"
+        ]
+      },
+      "Action": [
+        "kms:Encrypt",
+        "kms:Decrypt",
+        "kms:ReEncrypt*",
+        "kms:GenerateDataKey*",
+        "kms:DescribeKey"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "Allow Prod cross-account role to use the key",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::PROD_ACCOUNT_ID:role/Prod-CrossAccount-Deploy-Role"
+      },
+      "Action": [
+        "kms:Decrypt",
+        "kms:DescribeKey",
+        "kms:ReEncryptFrom"
+      ],
+      "Resource": "*"
+    }
+  ]
+}

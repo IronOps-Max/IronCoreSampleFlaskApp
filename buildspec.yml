@@ -10,6 +10,9 @@ phases:
       - pip install pytest
   build:
     commands:
+      - echo "Current directory: $(pwd)"
+      - echo "Files in current directory:"
+      - ls -l
       - echo "Running pytest..."
       - pytest --maxfail=1 --disable-warnings -q
   post_build:

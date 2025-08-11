@@ -1,0 +1,21 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowDevPipelineAndBuildAccess",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": [
+          "arn:aws:iam::272495906318:role/service-role/codebuild-IronCoreSampleAppBuild-service-role",
+          "arn:aws:iam::272495906318:role/service-role/AWSCodePipelineServiceRole-us-east-1-IronCoreDempAppPipeline"
+        ]
+      },
+      "Action": [
+        "s3:GetObject",
+        "s3:GetObjectVersion",
+        "s3:PutObject"
+      ],
+      "Resource": "arn:aws:s3:::ironcore-sampleapp/*"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+	"Version": "2012-10-17",
+	"Id": "key-consolepolicy-3",
+	"Statement": [
+		{
+			"Sid": "Enable IAM User Permissions",
+			"Effect": "Allow",
+			"Principal": {
+				"AWS": "arn:aws:iam::272495906318:root"
+			},
+			"Action": "kms:*",
+			"Resource": "*"
+		},
+		{
+      "Sid": "AllowDevPipelineAndBuildRoles",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": [
+          "arn:aws:iam::272495906318:role/service-role/AWSCodePipelineServiceRole-us-east-1-IronCoreDempAppPipeline",
+          "arn:aws:iam::272495906318:role/service-role/codebuild-IronCoreSampleAppBuild-service-role"
+        ]
+      },
+      "Action": [
+        "kms:Encrypt",
+        "kms:Decrypt",
+        "kms:ReEncrypt*",
+        "kms:GenerateDataKey*",
+        "kms:DescribeKey"
+      ],
+      "Resource": "*"
+    }
+	]
+}
