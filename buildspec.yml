@@ -10,12 +10,11 @@ phases:
       - pip install pytest
   build:
     commands:
-      - echo "Current directory"
-      - pwd
-      - echo "Files in current directory:"
       - ls -l
+      - export PYTHONPATH=$(pwd)
+      - echo $PYTHONPATH
       - echo "Running pytest..."
-      - pytest --maxfail=1 --disable-warnings -q
+      - pytest --maxfail=1 --disable-warnings -v
   post_build:
     commands:
       - echo "Tests passed - preparing artifact..."
