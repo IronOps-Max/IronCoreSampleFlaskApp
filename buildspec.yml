@@ -1,20 +1,20 @@
 version: 0.2
 
-phases:
-  install:
-    runtime-versions:
-      nodejs: 18
-    commands:
-      - echo Installing dependencies...
-      - npm install
-  build:
-    commands:
-      - echo Build phase - no build needed for this app
-  post_build:
-    commands:
-      - echo Build completed on `date`
-
-artifacts:
-  files:
-    - '**/*'
-  discard-paths: no
+phases: 
+    install:
+        runtime-versions:
+            nodejs: latest
+        commands:
+            - echo "installing something"
+    pre_build:
+        commands: 
+            - echo "we are in the pre build phase"
+    build:
+        commands:
+            - echo "we are in the build block"
+            - echo "we will run some tests"
+            - grep -Fq "Congratulations" index.html
+    post_build:
+        commands:
+            - echo "we are in the post build phase"
+            
