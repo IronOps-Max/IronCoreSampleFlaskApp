@@ -1,20 +1,26 @@
 version: 0.2
 
-phases: 
-    install:
-        runtime-versions:
-            nodejs: latest
-        commands:
-            - echo "installing something"
-    pre_build:
-        commands: 
-            - echo "we are in the pre build phase"
-    build:
-        commands:
-            - echo "we are in the build block"
-            - echo "we will run some tests"
-            - grep -Fq "Congratulations" index.html
-    post_build:
-        commands:
-            - echo "we are in the post build phase"
-            
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18
+    commands:
+      - echo Installing dependencies...
+      - npm install
+  build:
+    commands:
+      - echo Starting app in background...
+      - nohup npm start &
+      - sleep 5
+      - echo Testing with curl...
+      - STATUS_CODE=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:3000)
+      - if [ "$STATUS_CODE" -ne 200 ]; then echo "Test failed with status $STATUS_CODE"; exit 1; fi
+      - echo "Test passed with status $STATUS_CODE"
+artifacts:
+  files:
+    - index.html
+    - server.js
+    - package.json
+    - appspec.yml
+    - scripts/**
+

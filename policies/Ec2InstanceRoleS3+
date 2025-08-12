@@ -1,0 +1,35 @@
+{
+  "Version": "2012-10-17",
+  "Id": "key-default-1",
+  "Statement": [
+    {
+      "Sid": "AllowRootAccountFullAccess",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::272495906318:root"
+      },
+      "Action": "kms:*",
+      "Resource": "*"
+    },
+    {
+      "Sid": "AllowAllDeploymentRolesKMSAccess",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": [
+          "arn:aws:iam::272495906318:role/YourEC2InstanceRole",
+          "arn:aws:iam::272495906318:role/AWSCodePipelineServiceRole-us-east-1-IronCoreDempAppPipeline",
+          "arn:aws:iam::272495906318:role/YourCodeDeployServiceRole"
+        ]
+      },
+      "Action": [
+        "kms:Encrypt",
+        "kms:Decrypt",
+        "kms:ReEncrypt*",
+        "kms:GenerateDataKey*",
+        "kms:DescribeKey"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
+
