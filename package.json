@@ -1,9 +1,12 @@
 {
-  "name": "Elastic-Beanstalk-Sample-App",
-  "version": "0.0.1",
-  "private": true,
-  "dependencies": {},
+  "name": "hello-nodejs-app",
+  "version": "1.0.0",
+  "description": "Simple Node.js app serving Hello World HTML",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
   }
 }
